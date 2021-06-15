@@ -1,4 +1,8 @@
 import { SET_USER, SET_REPOSITORIES, SET_LOADING, SET_ERROR } from './const'
+// fetch github api using octokit for gain more rate limit with auth octokit
+import { Octokit } from "@octokit/rest";
+
+const octokit = new Octokit({auth: "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"})
 
 export function setUser(payload) {
     return { type: SET_USER, payload}
@@ -14,4 +18,34 @@ export function setLoading(payload) {
 
 export function setError(payload) {
     return { type: SET_ERROR, payload}
+}
+
+export function fetchUser(payload) {
+    return async (dispatch) => {
+        try {
+            dispatch(setError(false))
+            dispatch(setLoading(true))
+            const data = await octokit.request(`GET /users/${payload}`)
+            dispatch(setUser( data.data ))
+            dispatch(setLoading(false))
+        } catch (error) {
+            dispatch(setError(error))
+            dispatch(setLoading(false))
+        }
+    }
+}
+
+export function fetchRepositories(payload) {
+    return async (dispatch) => {
+        try {
+            dispatch(setError(false))
+            dispatch(setLoading(true))
+            const data = await octokit.request(`GET /users/${payload}/repos`)
+            dispatch(setRepositories( data.data ))
+            dispatch(setLoading(false))
+        } catch (error) {
+            dispatch(setError(error))
+            dispatch(setLoading(false))
+        }
+    }
 }
