@@ -2,7 +2,7 @@ import { SET_USER, SET_REPOSITORIES, SET_LOADING, SET_ERROR } from './const'
 // fetch github api using octokit for gain more rate limit with auth octokit
 import { Octokit } from "@octokit/rest";
 
-const octokit = new Octokit({auth: "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"})
+const octokit = new Octokit()
 
 export function setUser(payload) {
     return { type: SET_USER, payload}
