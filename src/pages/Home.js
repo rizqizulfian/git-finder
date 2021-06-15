@@ -37,7 +37,7 @@ function Home() {
                         <div className="flex justify-center pt-12 sm:pt-12 md:pt-20">
                             <form onSubmit={submitHandler}>
                                 <div className="flex space-x-4 w-auto">
-                                    <input type="text" value={username} onChange={textHandler} className="animate-pulse border border-transparent w-52 md:w-60 border-0 rounded-md p-2" placeholder="input username" />
+                                    <input type="text" value={username} onChange={textHandler} className="animate-pulse border border-transparent w-52 md:w-60 rounded-md p-2" placeholder="input username" />
                                     <button type="submit" className="animate-pulse bg-pink-600 rounded w-28 md:w-32 text-white">Search</button>
                                 </div>
                             </form>
